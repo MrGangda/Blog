@@ -1,35 +1,54 @@
 <template>
-
-  <button @click="addLike">Like</button>
-  <button @click="addDislike">Dislike</button>
-  <div>Кол-во лайков: {{ likes }} </div>
-  <div>Кол-во лайков: {{ dislikes }} </div>
+  <div class="app">
+  <post-form
+      @create="createPost"
+  />
+  <post-list
+      :posts="posts"
+      @remove="removePost"
+  />
+  </div>
 </template>
 
 
 <script>
+import PostForm from "@/components/PostForm";
+import PostList from "@/components/PostList";
+
 export default {
+  components: {
+    PostList, PostForm
+  },
   data() {
     return {
-      likes: 0,
-      dislikes: 5,
+      posts: [
+
+      ],
     }
   },
   methods: {
-    addLike() {
-      this.likes += 1
+    createPost(post) {
+      this.posts.push(post);
     },
-    addDislike() {
-    this.dislikes += 1
+    removePost(post) {
+      this.posts = this.posts.filter(p => p.id !== post.id)
+    },
   }
-  }
-  
 }
-
 </script>
 
 
 
 <style>
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .app {
+    padding: 20px;
+  }
 
 </style>
