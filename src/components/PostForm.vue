@@ -12,7 +12,6 @@
         placeholder="Описание"
     />
     <my-button
-
         @click="createPost"
         style="align-self: flex-end; margin-top: 15px"
     >
@@ -35,7 +34,7 @@ export default {
   "methods": {
     "createPost"() {
       this.post.id = Date.now();
-      this.$emit('create', this.post, 'Some parameters', 'third parameter')
+      this.$emit('create', this.post)
       this.post = {
         "title": '',
         "body": '',
